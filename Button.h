@@ -5,10 +5,10 @@
 #define CALCULATOR_BUTTON_H
 class Button {
 private:
-    float x = 0;
-    float y = 225;
-    float width = 50;
-    float height = 50;
+    float x = 28;
+    float y = 200;
+    float width = 65;
+    float height = 65;
     std::string text = "1";
     Rectangle rect {x, y, width, height}    ;
 
@@ -19,8 +19,8 @@ public:
     //___________________________________________
 
     Button() = default;
-    Button(float x, float y, float width, float height, std::string &number) :
-           x (x), y (y), width (width), height (height), text (number){};
+    Button(float x, float y, std::string &number) :
+           x (x), y (y), text (number){};
 
     //-------------------------------------------
     // Getter Functions
@@ -31,6 +31,7 @@ public:
     float get_y() const { return y; };
     float get_width() const { return width; };
     float get_height() const { return height; };
+    std::string get_text() const { return text; };
 
     //-------------------------------------------
     // Various Functions
