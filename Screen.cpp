@@ -41,3 +41,13 @@ void Screen::draw() {
              font_size,
              GREEN);
 }
+
+void Screen::equal_update() {
+    number_string = evaluation_string;
+    evaluation_string = "";
+}
+
+void Screen::clear_screen() {
+    number_string = "";
+    evaluation_string = "";
+}

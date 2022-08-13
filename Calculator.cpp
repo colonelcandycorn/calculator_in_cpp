@@ -41,6 +41,22 @@ void Calculator::draw_buttons() {
 }
 
 void Calculator::check_input() {
+    switch (current_mode) {
+        case empty:
+            check_one_to_nine_input();
+            break;
+        case first_operand:
+            check_numbers_input();
+            check_operator_input();
+            break;
+    }
+}
+
+void Calculator::draw_screen() {
+    calc_screen.draw();
+}
+
+void Calculator::check_numbers_input() {
     for (auto button : num_buttons)
     {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),button.get_rect()))
@@ -49,7 +65,22 @@ void Calculator::check_input() {
             button.click(calc, calc_screen, current_mode);
         }
     }
+}
 
+void Calculator::check_one_to_nine_input() {
+    for (auto button : num_buttons)
+    {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) &&
+            CheckCollisionPointRec(GetMousePosition(),button.get_rect()) &&
+            button.get_text() != "0"    )
+        {
+            // button.click(number_string);
+            button.click(calc, calc_screen, current_mode);
+        }
+    }
+}
+
+void Calculator::check_operator_input() {
     for (auto button : op_buttons)
     {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),button.get_rect()))
@@ -57,13 +88,11 @@ void Calculator::check_input() {
             button.click(number_string);
         }
     }
+}
 
+void Calculator::check_equal_input() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),equal.get_rect()))
     {
         equal.click(number_string);
     }
-}
-
-void Calculator::draw_screen() {
-    calc_screen.draw();
 }

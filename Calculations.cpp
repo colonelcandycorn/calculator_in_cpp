@@ -17,38 +17,25 @@ void Calculations::update_operation(const std::string &operation_str) {
     }
 }
 
-void Calculations::update_operand1(const std::string &num_str) {
+void Calculations::update_operand(const std::string &num_str, double &operand) {
     double temp_num;
     if (decimal_place) {
         temp_num = stod(num_str);
         temp_num /= pow(10, decimal_place);
-        operand1 += temp_num;
+        operand += temp_num;
         ++num_of_digits;
         ++decimal_place;
     } else {
         temp_num = stod(num_str);
-        operand1 *= 10;
-        operand1 += temp_num;
+        operand *= 10;
+        operand += temp_num;
         ++num_of_digits;
     }
+
+    if (operand2 > 0)
+        evaluate();
 }
 
-void Calculations::update_operand2(const std::string &num_str) {
-    double temp_num;
-    if (decimal_place) {
-        temp_num = stod(num_str);
-        temp_num /= pow(10, decimal_place);
-        operand2 += temp_num;
-        ++num_of_digits;
-        ++decimal_place;
-    } else {
-        temp_num = stod(num_str);
-        operand2 *= 10;
-        operand2 += temp_num;
-        ++num_of_digits;
-    }
-    Calculations::evaluate();
-}
 
 void Calculations::evaluate() {
     switch (operation) {
@@ -65,6 +52,9 @@ void Calculations::evaluate() {
             Calculations::multiply();
             break;
     }
+    operand1 = evaluation;
+    operand2 = 0;
+    reset_decimal_and_digits();
 }
 
 void Calculations::add() {
@@ -81,4 +71,15 @@ void Calculations::divide() {
 
 void Calculations::multiply() {
     evaluation = operand1 * operand2;
+}
+
+void Calculations::reset() {
+    operand1 = 0;
+    operand2 = 0;
+    reset_decimal_and_digits();
+}
+
+void Calculations::reset_decimal_and_digits() {
+    decimal_place = 0;
+    num_of_digits = 0;
 }

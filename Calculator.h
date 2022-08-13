@@ -48,6 +48,10 @@ private:
 
     void create_numbers();
     void create_operators();
+    void check_numbers_input();
+    void check_one_to_nine_input();
+    void check_operator_input();
+    void check_equal_input();
 
 public:
     //-----------------------------------

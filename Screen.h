@@ -25,6 +25,8 @@ public:
     void add_number(const string &button_text);
     void update_evaluation_string(const double &evaluation);
     void draw();
+    void equal_update();
+    void clear_screen();
 };
 
 
