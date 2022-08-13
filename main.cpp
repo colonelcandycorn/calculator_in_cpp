@@ -1,8 +1,6 @@
-#include <iostream>
-#include <string>
+
 #include "Calculator.h"
-extern const int WIDTH = 400;
-extern const int HEIGHT = 500;
+
 
 int main()
 {
@@ -13,7 +11,8 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(BLACK);
+        ClearBackground(DARKGRAY);
+        calc.draw_screen();
         calc.check_input();
         calc.draw_buttons();
         EndDrawing();

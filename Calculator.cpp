@@ -4,14 +4,12 @@
 #include <iostream>
 #include "Calculator.h"
 
-
-
 void Calculator::create_numbers() {
     int button_count = 0;
     for (auto button : button_numbers)
     {
-        NumberButton temp(28 + (button_count % 3 * (65 + 28)),
-                    200 + 75 * (button_count / 3),
+        NumberButton temp(GAP_WIDTH + (button_count % 3 * (BUTTON_SIZE + GAP_WIDTH)),
+                    SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * (button_count / 3),
                     button);
         num_buttons.push_back(temp);
         ++button_count;
@@ -22,7 +20,7 @@ void Calculator::create_operators() {
     int button_count = 0;
     for (auto button : button_operators)
     {
-        OperatorButton temp (400 - 28 - 65, 200 + 75 * (button_count), button);
+        OperatorButton temp (WIDTH - GAP_WIDTH - BUTTON_SIZE, SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * button_count, button);
         op_buttons.push_back(temp);
         ++button_count;
     }
@@ -39,7 +37,7 @@ void Calculator::draw_buttons() {
         button.draw();
     }
     equal.draw();
-    DrawText( number_string.c_str(), 400 - MeasureText(number_string.c_str(), 30), 0, 30, WHITE);
+    DrawText( number_string.c_str(), WIDTH - MeasureText(number_string.c_str(), 30) - GAP_WIDTH, GAP_HEIGHT, 30, GREEN);
 }
 
 void Calculator::check_input() {
@@ -63,4 +61,8 @@ void Calculator::check_input() {
     {
         equal.click(number_string);
     }
+}
+
+void Calculator::draw_screen() {
+    calc_screen.draw();
 }

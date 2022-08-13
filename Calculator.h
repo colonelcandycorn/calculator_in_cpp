@@ -1,10 +1,18 @@
+
+
+#ifndef CALCULATOR_CALCULATOR_H
+#define CALCULATOR_CALCULATOR_H
 #include <vector>
 #include "Button.h"
 #include "NumberButton.h"
 #include "OperatorButton.h"
 #include "EqualButton.h"
-#ifndef CALCULATOR_CALCULATOR_H
-#define CALCULATOR_CALCULATOR_H
+#include "Calculations.h"
+#include "Screen.h"
+#include "Constants.h"
+
+enum mode{empty, first_operand, second_operand, operation,
+          first_decimal, second_decimal, equal};
 using std::vector;
 using std::string;
 
@@ -27,10 +35,12 @@ private:
     vector<OperatorButton> op_buttons = {};
     string equal_str{"="};
     EqualButton equal{28 + (28 + 65) * 2, 500 - 10 - 65, equal_str};
-    Button decimal;
-    Button clear;
+    Calculations calc;
+    Screen calc_screen;
+    // Button decimal; to be implemented
+    // Button clear; to be implemented
     bool isDecimal = false;
-    string mode = "empty";
+    mode current_mode = empty;
 
     string number_string; // to be deleted
 
@@ -59,6 +69,7 @@ public:
 
     const vector<NumberButton> &get_buttons() const { return num_buttons; };
     void draw_buttons();
+    void draw_screen();
     void check_input();
 };
 
