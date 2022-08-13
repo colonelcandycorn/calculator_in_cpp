@@ -21,6 +21,7 @@ public:
     void update_operation(const string &operation_str);
     void update_operand1(const string &num_str);
     void update_operand2(const string &num_str);
+    void turn_on_decimal() { ++decimal_place; };
     void evaluate();
     void add();
     void subtract();

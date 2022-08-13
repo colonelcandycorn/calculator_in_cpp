@@ -11,8 +11,6 @@
 #include "Screen.h"
 #include "Constants.h"
 
-enum mode{empty, first_operand, second_operand, operation,
-          first_decimal, second_decimal, equal};
 using std::vector;
 using std::string;
 

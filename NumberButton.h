@@ -1,10 +1,13 @@
 //
 // Created by sarah on 8/11/22.
 //
-#include "Button.h"
 
 #ifndef CALCULATOR_NUMBERBUTTON_H
 #define CALCULATOR_NUMBERBUTTON_H
+#include "Button.h"
+#include "Calculations.h"
+#include "Screen.h"
+
 
 
 class NumberButton : public Button {
@@ -12,7 +15,7 @@ private:
 public:
     using Button::Button;
 
-    void click(std::string &number_str);
+    void click(Calculations &calc, Screen &screen, mode &current_mode);
 };
 
 

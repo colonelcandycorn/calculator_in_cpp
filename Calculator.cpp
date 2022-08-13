@@ -45,7 +45,8 @@ void Calculator::check_input() {
     {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),button.get_rect()))
         {
-            button.click(number_string);
+            // button.click(number_string);
+            button.click(calc, calc_screen, current_mode);
         }
     }
 
