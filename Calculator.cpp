@@ -8,10 +8,9 @@ void Calculator::create_numbers() {
     int button_count = 0;
     for (auto button : button_numbers)
     {
-        NumberButton temp(GAP_WIDTH + (button_count % 3 * (BUTTON_SIZE + GAP_WIDTH)),
-                    SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * (button_count / 3),
-                    button);
-        num_buttons.push_back(temp);
+        num_buttons.emplace_back(GAP_WIDTH + (button_count % 3 * (BUTTON_SIZE + GAP_WIDTH)),
+                                 SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * (button_count / 3),
+                                 button);
         ++button_count;
     }
 }
@@ -20,8 +19,9 @@ void Calculator::create_operators() {
     int button_count = 0;
     for (auto button : button_operators)
     {
-        OperatorButton temp (WIDTH - GAP_WIDTH - BUTTON_SIZE, SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * button_count, button);
-        op_buttons.push_back(temp);
+        op_buttons.emplace_back(WIDTH - GAP_WIDTH - BUTTON_SIZE,
+                                SCREEN_SIZE + (BUTTON_SIZE + GAP_HEIGHT) * button_count,
+                                button);
         ++button_count;
     }
 }
