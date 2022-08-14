@@ -17,10 +17,12 @@ void NumberButton::click(Calculations &calc, Screen &screen, mode &current_mode)
             screen.add_number(get_text());
             break;
         case operation:
+            calc.reset_decimal_and_digits();
         case second_decimal:
             current_mode = second_operand;
         case second_operand:
             calc.update_operand(get_text(), calc.get_operand2());
+            screen.update_evaluation_string(calc.get_evaluation());
             screen.add_number(get_text());
             break;
     }

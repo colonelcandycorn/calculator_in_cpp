@@ -20,6 +20,7 @@ private:
 public:
     double &get_operand1() { return operand1; };
     double &get_operand2() { return operand2; };
+    double &get_evaluation() { return evaluation; };
     void update_operation(const string &operation_str);
     void update_operand(const string &num_str, double &operand);
     void turn_on_decimal() { ++decimal_place; };
@@ -30,6 +31,7 @@ public:
     void multiply();
     void reset();
     void reset_decimal_and_digits();
+    int calc_decimal_places(double num);
 };
 
 

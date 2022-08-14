@@ -52,9 +52,6 @@ void Calculations::evaluate() {
             Calculations::multiply();
             break;
     }
-    operand1 = evaluation;
-    operand2 = 0;
-    reset_decimal_and_digits();
 }
 
 void Calculations::add() {
@@ -83,3 +80,11 @@ void Calculations::reset_decimal_and_digits() {
     decimal_place = 0;
     num_of_digits = 0;
 }
+
+int Calculations::calc_decimal_places(double num) {
+    int i;
+    for (i=0; num!=rint(num); num+=num, i++);
+    return i;
+}
+
+// to do calculate total_digits

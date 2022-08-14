@@ -7,6 +7,7 @@
 #include <string>
 #include "raylib.h"
 #include "Constants.h"
+#include <cmath>
 
 using std::string;
 
@@ -22,6 +23,7 @@ private:
     string evaluation_string;
 public:
     void change_operator(const string &button_text);
+    string &get_evaluation_string() { return evaluation_string; };
     void add_number(const string &button_text);
     void update_evaluation_string(const double &evaluation);
     void draw();

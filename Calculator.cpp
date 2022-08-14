@@ -49,6 +49,14 @@ void Calculator::check_input() {
             check_numbers_input();
             check_operator_input();
             break;
+        case operation:
+            check_one_to_nine_input();
+            check_operator_input();
+            break;
+        case second_operand:
+            check_numbers_input();
+            check_operator_input();
+            break;
     }
 }
 
@@ -85,7 +93,7 @@ void Calculator::check_operator_input() {
     {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),button.get_rect()))
         {
-            button.click(number_string);
+            button.click(calc, calc_screen, current_mode);
         }
     }
 }

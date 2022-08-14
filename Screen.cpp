@@ -13,7 +13,10 @@ void Screen::add_number(const string &button_text) {
 }
 
 void Screen::update_evaluation_string(const double &evaluation) {
-    evaluation_string = std::to_string(evaluation);
+    if (evaluation == rint(evaluation))
+        evaluation_string = std::to_string(static_cast<int>(evaluation));
+    else
+        evaluation_string = std::to_string(evaluation);
 }
 
 void Screen::draw() {
@@ -22,8 +25,8 @@ void Screen::draw() {
     int left_over_numbers = number_string.size() % 17;
     int i = 0;
     while (i < number_of_full_strings) {
-        DrawText(number_string.substr(i * 16, 17).c_str(),
-                 WIDTH - MeasureText(number_string.substr(i * 16, 17).c_str(), font_size) - GAP_WIDTH,
+        DrawText(number_string.substr(i * 17, 17).c_str(),
+                 WIDTH - MeasureText(number_string.substr(i * 17, 17).c_str(), font_size) - GAP_WIDTH,
                  GAP_HEIGHT + font_size * (i),
                  font_size,
                  GREEN);
@@ -37,7 +40,7 @@ void Screen::draw() {
 
     DrawText(evaluation_string.c_str(),
              WIDTH - MeasureText(evaluation_string.c_str(), font_size) - GAP_WIDTH,
-             GAP_HEIGHT + SCREEN_SIZE - font_size,
+             SCREEN_SIZE - font_size - GAP_HEIGHT,
              font_size,
              GREEN);
 }
