@@ -13,7 +13,7 @@ private:
 public:
 using Button::Button;
 
-void click(Calculations &calc, Screen &screen);
+void click(Calculations &calc, Screen &screen, mode &current_mode);
 };
 
 

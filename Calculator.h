@@ -10,6 +10,7 @@
 #include "Calculations.h"
 #include "Screen.h"
 #include "Constants.h"
+#include "DecimalButton.h"
 
 using std::vector;
 using std::string;
@@ -32,7 +33,9 @@ private:
     vector<NumberButton> num_buttons = {};
     vector<OperatorButton> op_buttons = {};
     string equal_str{"="};
-    EqualButton equal{28 + (28 + 65) * 2, 500 - 10 - 65, equal_str};
+    string decimal_str{"."};
+    EqualButton equal_button{28 + (28 + 65) * 2, 500 - 10 - 65, equal_str};
+    DecimalButton decimal_button{28 + (28 +65), 500 - 10 - 65, decimal_str};
     Calculations calc;
     Screen calc_screen;
     // Button decimal; to be implemented
@@ -52,6 +55,7 @@ private:
     void check_one_to_nine_input();
     void check_operator_input();
     void check_equal_input();
+    void check_decimal_input();
 
 public:
     //-----------------------------------

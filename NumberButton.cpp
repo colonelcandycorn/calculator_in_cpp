@@ -7,7 +7,7 @@
 void NumberButton::click(Calculations &calc, Screen &screen, mode &current_mode) {
     switch (current_mode) {
         case equal:
-            calc.reset_decimal_and_digits();
+            calc.reset();
             screen.clear_screen();
         case empty:
         case first_decimal:

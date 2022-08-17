@@ -36,26 +36,46 @@ void Calculator::draw_buttons() {
     {
         button.draw();
     }
-    equal.draw();
-    DrawText( number_string.c_str(), WIDTH - MeasureText(number_string.c_str(), 30) - GAP_WIDTH, GAP_HEIGHT, 30, GREEN);
+    equal_button.draw();
+    decimal_button.draw();
 }
 
 void Calculator::check_input() {
     switch (current_mode) {
         case empty:
             check_one_to_nine_input();
+            check_decimal_input();
             break;
         case first_operand:
             check_numbers_input();
             check_operator_input();
+            if (!isDecimal)
+                check_decimal_input();
             break;
         case operation:
             check_one_to_nine_input();
             check_operator_input();
+            check_decimal_input();
             break;
         case second_operand:
             check_numbers_input();
             check_operator_input();
+            check_equal_input();
+            if (!isDecimal)
+                check_decimal_input();
+            break;
+        case equal:
+            check_numbers_input();
+            check_operator_input();
+            check_decimal_input();
+            break;
+        case first_decimal:
+            check_operator_input();
+            check_numbers_input();
+            break;
+        case second_decimal:
+            check_operator_input();
+            check_numbers_input();
             check_equal_input();
             break;
     }
@@ -95,13 +115,23 @@ void Calculator::check_operator_input() {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),button.get_rect()))
         {
             button.click(calc, calc_screen, current_mode);
+            isDecimal = false;
         }
     }
 }
 
 void Calculator::check_equal_input() {
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),equal.get_rect()))
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),equal_button.get_rect()))
     {
-        equal.click(calc, calc_screen);
+        equal_button.click(calc, calc_screen, current_mode);
+        isDecimal= false;
+    }
+}
+
+void Calculator::check_decimal_input() {
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),decimal_button.get_rect()))
+    {
+        decimal_button.click(calc, calc_screen, current_mode);
+        isDecimal = true;
     }
 }
