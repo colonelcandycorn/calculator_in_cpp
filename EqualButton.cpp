@@ -4,6 +4,8 @@
 
 #include "EqualButton.h"
 
-void EqualButton::click(std::string &number_str) {
-    number_str += get_text();
+void EqualButton::click(Calculations &calc, Screen &screen) {
+    screen.equal_update();
+    calc.get_operand1() = calc.get_evaluation();
+    calc.get_operand2() = 0;
 }

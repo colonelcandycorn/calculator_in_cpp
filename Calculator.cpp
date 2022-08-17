@@ -56,6 +56,7 @@ void Calculator::check_input() {
         case second_operand:
             check_numbers_input();
             check_operator_input();
+            check_equal_input();
             break;
     }
 }
@@ -101,6 +102,6 @@ void Calculator::check_operator_input() {
 void Calculator::check_equal_input() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(),equal.get_rect()))
     {
-        equal.click(number_string);
+        equal.click(calc, calc_screen);
     }
 }
